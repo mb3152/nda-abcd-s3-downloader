@@ -1,11 +1,22 @@
 # NDA Collection 3165 ABCD-BIDS Downloader
 
-This tool can be used to download BIDS inputs and derivatives from the DCAN Labs ABCD-BIDS collection 3165 from the NIMH Data Archive (NDA).  All files are hosted by the NDA in Amazon Web Services (AWS) Simple Storage Service (S3) buckets.
+This tool can be used to download BIDS inputs and derivatives from the DCAN Labs ABCD-BIDS collection 3165 from the NIMH Data Archive (NDA).  All files are hosted by the NDA in Amazon Web Services (AWS) Simple Storage Service (S3) buckets. This is a forked version for the PennLINC lab.
 
 ## Requirements
 
+### subject_list.txt
+
+By default all data subsets specified in the data_subsets.txt for ALL subjects will be downloaded. If data from only a subset of subjects should be downloaded a .txt file with each unique BIDS formated subject ID on a new line must be provided to `download.py` with the `-s` option. Here is an example of what this file might look like for 3 subjects.
+
+```shell
+sub-NDARINVXXXXXXX
+sub-NDARINVYYYYYYY
+sub-NDARINVZZZZZZZ
+```
+
 ### datastructure_manifest.txt 
 
+I have downloaded this for you. Here are the original instructions:
 
 To use this downloader you must first have an NDA account and download the "DCAN Labs ABCD-BIDS MRI pipeline inputs and derivatives" collection from the [NDA website](https://ndar.nih.gov/):
 1.  Navigate to the [NDA website](https://ndar.nih.gov/)
@@ -22,17 +33,9 @@ To use this downloader you must first have an NDA account and download the "DCAN
 
 ### data_subsets.txt
 
+This is also already here. Don't worry about it! 
+
 In addition to the "datastructure_manifest.txt" you must also provide a list of the data subset types you wish to download.  For ease of use a list of all possible data subsets is provided with this repository: `data_subsets.txt`.  If you would only like a subset of all possible data subsets you should copy only the data subset types that you want into a new `.txt` file and point to that when calling `download.py` with the `-d` option.
-
-### subject_list.txt
-
-By default all data subsets specified in the data_subsets.txt for ALL subjects will be downloaded. If data from only a subset of subjects should be downloaded a .txt file with each unique BIDS formated subject ID on a new line must be provided to `download.py` with the `-s` option. Here is an example of what this file might look like for 3 subjects.
-
-```shell
-sub-NDARINVXXXXXXX
-sub-NDARINVYYYYYYY
-sub-NDARINVZZZZZZZ
-```
 
 ### Python dependencies
 
@@ -41,8 +44,7 @@ A list of all necessary pip installable dependencies can be found in requirement
 ```shell
 python3 -m pip install -r requirements.txt --user
 ```
-
-
+This might break! If it does, try pip install PACKAGE for each PACKAGE in the requirements.txt file 
 
 ## Usage
 
